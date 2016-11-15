@@ -1,0 +1,41 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '*' ]
+2 info using npm@2.14.7
+3 info using node@v4.2.1
+4 verbose install initial load of C:\Skola\Bilfixarna\package.json
+5 verbose installManyTop reading scoped package data from C:\Skola\Bilfixarna\node_modules\body-parser\package.json
+6 verbose installManyTop reading scoped package data from C:\Skola\Bilfixarna\node_modules\cookie-parser\package.json
+7 verbose installManyTop reading scoped package data from C:\Skola\Bilfixarna\node_modules\express\package.json
+8 verbose installManyTop reading scoped package data from C:\Skola\Bilfixarna\node_modules\mongoose\package.json
+9 verbose installManyTop reading scoped package data from C:\Skola\Bilfixarna\node_modules\path\package.json
+10 verbose installManyTop reading scoped package data from C:\Skola\Bilfixarna\node_modules\serve-favicon\package.json
+11 info package.json path@0.12.7 path is also the name of a node core module.
+12 verbose readDependencies loading dependencies from C:\Skola\Bilfixarna\package.json
+13 silly cache add args [ '*', null ]
+14 verbose cache add spec *
+15 silly cache add parsed spec Result {
+15 silly cache add   raw: '*',
+15 silly cache add   scope: null,
+15 silly cache add   name: null,
+15 silly cache add   rawSpec: '*',
+15 silly cache add   spec: 'C:\\Skola\\Bilfixarna\\*',
+15 silly cache add   type: 'local' }
+16 error addLocal Could not install C:\Skola\Bilfixarna\*
+17 verbose stack Error: ENOENT: no such file or directory, open 'C:\Skola\Bilfixarna\*'
+17 verbose stack     at Error (native)
+18 verbose cwd C:\Skola\Bilfixarna
+19 error Windows_NT 10.0.14393
+20 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "*"
+21 error node v4.2.1
+22 error npm  v2.14.7
+23 error path C:\Skola\Bilfixarna\*
+24 error code ENOENT
+25 error errno -4058
+26 error syscall open
+27 error enoent ENOENT: no such file or directory, open 'C:\Skola\Bilfixarna\*'
+27 error enoent This is most likely not a problem with npm itself
+27 error enoent and is related to npm not being able to find a file.
+28 verbose exit [ -4058, true ]

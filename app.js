@@ -1,37 +1,52 @@
+// globals
+m = {}; // all modules
+g = {}; // all global variables (ex. settings)
+
 // Require modules
-var m = {};
 [
   "express",
+  "compression",
   "path",
+  "fs",
   "serve-favicon",
   "cookie-parser",
+  "express-session",
   "body-parser",
-  "mongoose"
+  "gulp",
+  "gulp-less",
+  "gulp-clean-css",
+  "mongoose",
+  "./settingsConstr",
+  "./classLoader"
 ].forEach(function(x){
-  // store required modules in m
+  // store required modules in "m"
   m[x.replace(/\W/g,'')] = require(x);
 });
 
-// Standard Express boiler plate code
-var app = m.express();
-//app.use(favicon(__dirname + '/www/favicon.ico'));
-app.use(m.bodyparser.json());
-app.use(m.bodyparser.urlencoded({ extended: false }));
-app.use(m.cookieparser());
-app.use(m.express.static(m.path.join(__dirname, 'www')));
+console.log("All loaded modules", Object.keys(m));
 
-var options = {
-  // The MongoDB database to connect to
-  dbName: "bilfixarna"
-};
+// constructs g.settings object
+m.settingsConstr();
 
-// Route everything "else" (not "/api/**/*") to angular (in html5mode)
-app.get('*', function (req, res) {
-  res.sendFile('index.html', {root: './www'});
-});
+// loads all classes
+m.classLoader();
 
-// Start up
-var port = 3000;
-app.listen(port, function(){
-  console.log("Express server listening on port " + port);
-});
+console.log("All loaded classes", Object.keys(g.classes));
+
+// connect to DB
+new g.classes.DB();
+
+// start LessWatch
+new g.classes.LessWatch();
+
+// start express server
+new g.classes.Server();
+
+
+/*
+  If we didnt have a class loader
+
+  var Server = require('./classes/Server.class.js');
+
+  new Server();
+*/
