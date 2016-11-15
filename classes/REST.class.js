@@ -35,6 +35,19 @@ module.exports = class REST {
     });
 
   }
+  
+  // CREATE
+  POST(model, params, body, req, res) {
+
+      var me = this,
+          toSave = new model(body); // new model instance with data
+
+      // write data to DB
+      toSave.save(function(err, result) {
+        if (err) { me.error(err, res); return; }
+        res.json(result); // respond with result
+      });
+  }
 
   // READ
   GET(model, params, req, res) {
@@ -47,6 +60,28 @@ module.exports = class REST {
     model[func](q, function(err, result) {
       if (err) { me.error(err, res); return; }
       res.json(result); // respond with result
+    });
+  }
+  
+  // UPDATE
+  PUT(model, params, body, req, res) {
+    if (!params.modelID) { this.error({error: 'Missing ID!'}, res); return; }
+
+    var me = this;
+    model.findByIdAndUpdate(params.modelID, body, {new: true}, function (err, result) {
+      if (err) { me.error(err, res); return; }
+      res.json(result); // respond with result
+    });
+  }
+
+  // DELETE
+  DELETE(model, params, body, req, res) {
+    if (!params.modelID) { this.error({error: 'Missing ID!'}, res); return; }
+
+    var me = this;
+    model.findByIdAndRemove(params.modelID, function(err, result) {
+      if (err) { me.error(err, res); return; }
+      res.json(true); // respond with result
     });
   }
 
