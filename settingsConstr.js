@@ -40,7 +40,7 @@ module.exports = function() {
       route: '/rest/:model/:modelID?'
     },
     SQL: {
-      route: '/sql/:model/:modelID?'
+      route: '/mysql/:model/:modelID?'
     }
   };
 };
