@@ -75,13 +75,13 @@ module.exports = class REST {
   }
 
   // DELETE
-  DELETE(model, params, body, req, res) {
+  DELETE(model, params, req, res) {
     if (!params.modelID) { this.error({error: 'Missing ID!'}, res); return; }
 
     var me = this;
     model.findByIdAndRemove(params.modelID, function(err, result) {
       if (err) { me.error(err, res); return; }
-      res.json(true); // respond with result
+      res.json("Deleted"); // respond with result
     });
   }
 
