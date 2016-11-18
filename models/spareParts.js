@@ -7,4 +7,4 @@ var Schema = m.mongoose.Schema({
   VAT: {type: Number, required: true}
 });
 
-module.exports = m.mongoose.model("spare-parts", Schema);
+module.exports = m.mongoose.model("spareparts", Schema);

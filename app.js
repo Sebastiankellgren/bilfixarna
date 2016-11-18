@@ -19,7 +19,7 @@ g = {};
   "./models/damage",
   "./models/employees",
   "./models/repairs",
-  "./models/spare-parts",
+  "./models/spareParts",
   "./settingsConstr",
   "./classLoader"
 ].forEach(function(x){
