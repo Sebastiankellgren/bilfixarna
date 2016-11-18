@@ -16,7 +16,7 @@ module.exports = class REST {
     this.app.all(this.settings.route, function(req, res) {
       var model = me.DB.getModel(req.params.model);
       // do we have a 404?
-      if (!me[req.method] || !model) {
+      if (!me[req.method] || !model) {
         res.sendStatus(404);
         res.end();
         return;
@@ -24,7 +24,7 @@ module.exports = class REST {
 
       // combine any data sent in the request body with
       // any data sent in the request URL
-      var params = req.body || {};
+      var params = req.body || {};
       params.model = req.params.model;
       if (req.params.modelID) {
         params.modelID = req.params.modelID;
@@ -58,7 +58,7 @@ module.exports = class REST {
 
     // call the query function (find || findById)
     model[func](q, function(err, result) {
-      if (err) { me.error(err, res); return; }
+      if (err) { me.error(err, res); return; }
       res.json(result); // respond with result
     });
   }
@@ -68,12 +68,11 @@ module.exports = class REST {
     if (!params.modelID) { this.error({error: 'Missing ID!'}, res); return; }
 
     var me = this;
-    model.findByIdAndUpdate(params.modelID, body, {new: true}, function (err, result, res) {
+    model.findByIdAndUpdate(params.modelID, body, {new: true}, function (err, result) {
       if (err) { me.error(err, res); return; }
-      console.log(result); // respond with result
+      res.json(result); // respond with result
     });
   }
-
 
   // DELETE
   DELETE(model, params, req, res) {
