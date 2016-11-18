@@ -4,7 +4,10 @@ var Schema = m.mongoose.Schema({
   fName: {type: String, required: true},
   lName: {type: String, required: true},
   title: {type: Number, required: true},
-  vacation: {type: Array, required: true}
+  vacation: [{
+    from: {type: Date},
+    to: {type: Date}
+  }]
 });
 
 module.exports = m.mongoose.model("employees", Schema);

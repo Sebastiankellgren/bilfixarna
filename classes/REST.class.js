@@ -68,11 +68,12 @@ module.exports = class REST {
     if (!params.modelID) { this.error({error: 'Missing ID!'}, res); return; }
 
     var me = this;
-    model.findByIdAndUpdate(params.modelID, body, {new: true}, function (err, result) {
+    model.findByIdAndUpdate(params.modelID, body, {new: true}, function (err, result, res) {
       if (err) { me.error(err, res); return; }
-      res.json(result); // respond with result
+      console.log(result); // respond with result
     });
   }
+
 
   // DELETE
   DELETE(model, params, req, res) {
