@@ -37,10 +37,10 @@ module.exports = class REST {
   }
   
   // CREATE
-  POST(model, params, body, req, res) {
+  POST(model, params, req, res) {
 
       var me = this,
-          toSave = new model(body); // new model instance with data
+          toSave = new model(params); // new model instance with data
 
       // write data to DB
       toSave.save(function(err, result) {
@@ -64,15 +64,15 @@ module.exports = class REST {
   }
   
   // UPDATE
-  PUT(model, params, body, req, res) {
+  PUT(model, params, req, res) {
     if (!params.modelID) { this.error({error: 'Missing ID!'}, res); return; }
 
-    var me = this;
-    model.findByIdAndUpdate(params.modelID, body, {new: true}, function (err, result) {
-      if (err) { me.error(err, res); return; }
+    model.findByIdAndUpdate(params.modelID, params, {new: true}, function (err, result) {
+      if (err) { console.log(err) }
       res.json(result); // respond with result
     });
   }
+
 
   // DELETE
   DELETE(model, params, req, res) {
