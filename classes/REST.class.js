@@ -33,7 +33,7 @@ module.exports = class REST {
       me[req.method](model, params, req, res);
 
     });
-
+    
   }
   
   // CREATE

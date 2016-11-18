@@ -1,6 +1,5 @@
-// globals
-m = {}; // all modules
-g = {}; // all global variables (ex. settings)
+m = {};
+g = {};
 
 // Require modules
 [
@@ -16,6 +15,11 @@ g = {}; // all global variables (ex. settings)
   "gulp-less",
   "gulp-clean-css",
   "mongoose",
+  "./models/customers",
+  "./models/damage",
+  "./models/employees",
+  "./models/repairs",
+  "./models/spare-parts",
   "./settingsConstr",
   "./classLoader"
 ].forEach(function(x){
