@@ -10,7 +10,8 @@ module.exports = function() {
         'DB',
         'REST',
         'Server',
-        'LessWatch'
+        'LessWatch',
+        'mySQL'
       ]
     },
     Server: {
@@ -37,6 +38,9 @@ module.exports = function() {
     },
     REST: {
       route: '/rest/:model/:modelID?'
+    },
+    SQL: {
+      route: '/sql/:model/:modelID?'
     }
   };
 };
