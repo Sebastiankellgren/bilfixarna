@@ -7,4 +7,4 @@ var Schema = m.mongoose.Schema({
   email: {type: String, required: true}
 });
 
-module.exports = m.mongoose.model("Customers", Schema);
+module.exports = m.mongoose.model("customers", Schema);

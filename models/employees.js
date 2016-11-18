@@ -7,4 +7,4 @@ var Schema = m.mongoose.Schema({
   vacation: {type: Array, required: true}
 });
 
-module.exports = m.mongoose.model("Employees", Schema);
+module.exports = m.mongoose.model("employees", Schema);
