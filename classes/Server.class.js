@@ -1,53 +1,44 @@
 'use strict';
 
 module.exports = class Server {
-  constructor() {
-    // save our settings to this
-    this.settings = g.settings.Server;
 
-    // add express to this
-    this.app = m.express();
+	constructor(){
 
-    // run the setup method
-    this.setup();
-  }
+		this.settings = g.settings.Server;
+		this.app = m.express();
+		//this.db = new g.classes.DB();
+		this.setup();
+	}
 
-  setup() {
-    // tell express to use middleware to parse JSON
-    this.app.use(m.bodyparser.json());
-    // declare a webroot
-    this.app.use(
-      m.express.static(
-        m.path.join(g.settings.appRoot, this.settings.webroot)
-      )
-    );
+	setup(){
 
-    // compress all files using gzip
-    // this.app.use(m.); ????
+		this.app.use(m.bodyparser.json());
 
-    // parse all request cookies
-    this.app.use(m.cookieparser());
+		this.app.use(
+			m.express.static(
+				m.path.join(g.settings.appRoot, this.settings.webroot)
+			)
+		);
 
-    // parse all urlencoded request body data
-    // for example from "standard" HTML forms
-    this.app.use(m.bodyparser.urlencoded({extended: false}));
+		this.app.use(m.compression({threshold: 0}));
 
-    // start sessions
-    //this.app.use(m.expresssession({secret: '1234567890QWERTY'}));
+		this.app.use(m.cookieparser());
 
-    // Start REST api
-    new g.classes.REST(this.app);
+		this.app.use(m.bodyparser.urlencoded({extended: false}));
 
-    // create an endpoint ("*")
-    var me = this;
-    this.app.get(this.settings.endpoint, function(req, res) {
-      // send my index.html file
-      res.sendFile(me.settings.indexFile, {root: me.settings.webroot});
-    });
+		this.app.use(m.expresssession({
+			secret: 'Hublot',
+			resave: false,
+			saveUninitialized: true
+		}));
+		
+		new g.classes.REST(this.app);
+ 		new g.classes.Login(this.app);
 
-    // listen on port 3000
-    this.app.listen(this.settings.port,  function() {
-      console.log("Server listening on port "+me.settings.port);
-    });
-  }
+		var me = this;
+
+		this.app.listen(this.settings.port, function(){
+			console.log('Server listening on port ' + me.settings.port);
+		});
+	}
 }

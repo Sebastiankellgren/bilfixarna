@@ -1,25 +1,28 @@
-m = {};
+m = {}; 
 g = {};
 
-// Require modules
 [
   "express",
+  "express-session",
   "compression",
   "path",
   "fs",
   "serve-favicon",
   "cookie-parser",
-  "express-session",
   "body-parser",
+  "crypto",
   "gulp",
   "gulp-less",
   "gulp-clean-css",
   "mongoose",
+  "mysql",
+  "./models/cars",
   "./models/customers",
-  "./models/damage",
+  "./models/damages",
   "./models/employees",
-  "./models/repairs",
-  "./models/spareParts",
+  "./models/spares",
+  "./models/vacations",
+  "./dummyGen",
   "./settingsConstr",
   "./classLoader"
 ].forEach(function(x){
@@ -29,21 +32,18 @@ g = {};
 
 console.log("All loaded modules", Object.keys(m));
 
-// constructs g.settings object
 m.settingsConstr();
 
-// loads all classes
 m.classLoader();
 
 console.log("All loaded classes", Object.keys(g.classes));
 
-// connect to DB
-new g.classes.DB();
+//new g.classes.DB();
 
-// start LessWatch
+new g.classes.SQL();
+
 new g.classes.LessWatch();
 
-// start express server
 new g.classes.Server();
 
 

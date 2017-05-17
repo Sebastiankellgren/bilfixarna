@@ -1,4 +1,3 @@
-// constructs g.settings object
 module.exports = function() {
   var appRoot = m.path.normalize(__dirname +'/');
   
@@ -8,14 +7,15 @@ module.exports = function() {
       baseDir: m.path.join(appRoot,'classes/'),
       toLoad: [
         'DB',
+        'SQL',
         'REST',
         'Server',
         'LessWatch',
-        'mySQL'
+        'Login'
       ]
     },
     Server: {
-      endpoint: '*',
+      endpoint: '/',
       webroot: 'www',
       indexFile: 'index.html',
       port: 3000
@@ -33,14 +33,14 @@ module.exports = function() {
     },
     DB: {
       host: '127.0.0.1',
-      db: 'Bilar',
+      db: 'bilar',
       modelDir: m.path.join(appRoot,'models/')
     },
     REST: {
-      route: '/rest/:model/:modelID?'
+      route: '/:type/:model/:modelID?'
     },
-    SQL: {
-      route: '/mysql/:model/:modelID?'
+    Login: {
+      route: '/login'
     }
   };
 };
